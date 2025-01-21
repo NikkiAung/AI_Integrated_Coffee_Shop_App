@@ -39,12 +39,11 @@ class ClassificationAgent():
         input_messages += messages[-3:]
 
         chatbot_output =get_chatbot_response(self.client,self.model_name,input_messages)
-        print("chatbot_output " + chatbot_output)
+
         output = self.postprocess(chatbot_output)
         return output
 
     def postprocess(self,output):
-        print("Raw output : " + output)
         output = json.loads(output)
 
         dict_output = {
