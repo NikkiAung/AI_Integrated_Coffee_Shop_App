@@ -98,7 +98,7 @@ class RecommendationAgent():
         input_messages = [{"role": "system", "content": system_prompt}] + messages[-3:]
 
         chatbot_output = get_chatbot_response(self.client,self.model_name,input_messages)
-        chatbot_output = double_check_json_output (self.client,self.model_name,chatbot_output)
+        chatbot_output = double_check_json_output(self.client,self.model_name,chatbot_output)
 
         output = self.postprocess_classfication(chatbot_output)
         return output
