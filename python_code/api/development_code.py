@@ -1,6 +1,7 @@
 from agents import (GuardAgent,
                     ClassificationAgent,
                     DetailsAgent,
+                    RecommendationAgent,
                     AgentProtocol,
                     )
 import os
@@ -9,8 +10,14 @@ def main():
     guard_agent = GuardAgent()
     classification_agent = ClassificationAgent()
 
+    recommendation_agent = RecommendationAgent(
+        '/Users/aungnandaoo/Desktop/AI_Integrated_Coffee_Shop_App/python_code/api/recommendation_objects/apriori_recommendations.json',
+        '/Users/aungnandaoo/Desktop/AI_Integrated_Coffee_Shop_App/python_code/api/recommendation_objects/popularity_recommendation.csv'
+    )
+
     agent_dict: dict[str, AgentProtocol] = {
-        "details_agent": DetailsAgent()
+        "details_agent": DetailsAgent(),
+        "recommendation_agent" : recommendation_agent
     }
 
     messages = []
