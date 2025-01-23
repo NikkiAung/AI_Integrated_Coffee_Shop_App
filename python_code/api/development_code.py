@@ -2,22 +2,27 @@ from agents import (GuardAgent,
                     ClassificationAgent,
                     DetailsAgent,
                     RecommendationAgent,
+                    OrderTakingAgent,
                     AgentProtocol,
                     )
 import os
+import pathlib
+
+folder_path = pathlib.Path(__file__).parent.resolve()
 
 def main():
     guard_agent = GuardAgent()
     classification_agent = ClassificationAgent()
 
     recommendation_agent = RecommendationAgent(
-        '/Users/aungnandaoo/Desktop/AI_Integrated_Coffee_Shop_App/python_code/api/recommendation_objects/apriori_recommendations.json',
-        '/Users/aungnandaoo/Desktop/AI_Integrated_Coffee_Shop_App/python_code/api/recommendation_objects/popularity_recommendation.csv'
+        os.path.join(folder_path,'recommendation_objects/apriori_recommendations.json'),
+        os.path.join(folder_path,'recommendation_objects/popularity_recommendation.csv'),
     )
 
     agent_dict: dict[str, AgentProtocol] = {
         "details_agent": DetailsAgent(),
-        "recommendation_agent" : recommendation_agent
+        "recommendation_agent" : recommendation_agent,
+        "order_taking_agent": OrderTakingAgent(recommendation_agent),  
     }
 
     messages = []
